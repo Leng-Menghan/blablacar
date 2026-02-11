@@ -7,6 +7,7 @@ import '../../../../utils/date_time_util.dart';
 import '../../../../ui/theme/theme.dart';
 import '../../../../ui/widgets/actions/bla_button.dart';
 import '../../../../ui/widgets/display/bla_divider.dart';
+import '../../date_picker/date_picker_screen.dart';
 import '../../location_picker.dart/location_picker_screen.dart';
 import '../../seat_number.dart/seat_number_screen.dart';
  
@@ -95,8 +96,16 @@ class _RidePrefFormState extends State<RidePrefForm> {
     }
   }
 
-  void onTapDepartureDate() {
-
+  void onTapDepartureDate() async{
+    DateTime? selectedDate = await Navigator.push<DateTime>(
+      context,
+      MaterialPageRoute(builder: (context) => DatePickerScreen(date: departureDate,)),
+    );
+    if(selectedDate != null){
+      setState(() {
+        departureDate = selectedDate;
+      });
+    }
   }
 
   void onTapRequestedSeats() async{
