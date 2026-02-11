@@ -6,6 +6,7 @@ import '../../../../utils/date_time_util.dart';
 import '../../../../ui/theme/theme.dart';
 import '../../../../ui/widgets/actions/bla_button.dart';
 import '../../../../ui/widgets/display/bla_divider.dart';
+import '../../location_picker.dart/location_picker_screen.dart';
  
 ///
 /// A Ride Preference From is a view to select:
@@ -64,12 +65,28 @@ class _RidePrefFormState extends State<RidePrefForm> {
     });
   }
 
-  void onTapDeparture() {
-
+  void onTapDeparture() async {
+    Location? selectedDeparture = await Navigator.push<Location>(
+      context,
+      MaterialPageRoute(builder: (context) => LocationPickerScreen(location: departure,)),
+    );
+    if(selectedDeparture != null){
+      setState(() {
+        departure = selectedDeparture;
+      });
+    }
   }
 
-  void onTapArrival() {
-
+  void onTapArrival() async{
+    Location? selectedArrival = await Navigator.push<Location>(
+      context,
+      MaterialPageRoute(builder: (context) => LocationPickerScreen(location: arrival,)),
+    );
+    if(selectedArrival != null){
+      setState(() {
+        arrival = selectedArrival;
+      });
+    }
   }
 
   void onTapDepartureDate() {
