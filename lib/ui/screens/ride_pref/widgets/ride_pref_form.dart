@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
  
 import '../../../../model/ride/locations.dart';
 import '../../../../model/ride_pref/ride_pref.dart';
+import '../../../../utils/animations_util.dart';
 import '../../../../utils/date_time_util.dart';
 import '../../../../ui/theme/theme.dart';
 import '../../../../ui/widgets/actions/bla_button.dart';
@@ -68,7 +69,9 @@ class _RidePrefFormState extends State<RidePrefForm> {
   void onTapDeparture() async {
     Location? selectedDeparture = await Navigator.push<Location>(
       context,
-      MaterialPageRoute(builder: (context) => LocationPickerScreen(location: departure,)),
+      AnimationUtils.createBottomToTopRoute(
+        LocationPickerScreen(location: departure,)
+      ),
     );
     if(selectedDeparture != null){
       setState(() {
@@ -80,7 +83,9 @@ class _RidePrefFormState extends State<RidePrefForm> {
   void onTapArrival() async{
     Location? selectedArrival = await Navigator.push<Location>(
       context,
-      MaterialPageRoute(builder: (context) => LocationPickerScreen(location: arrival,)),
+      AnimationUtils.createBottomToTopRoute(
+        LocationPickerScreen(location: arrival,)
+      ),
     );
     if(selectedArrival != null){
       setState(() {
