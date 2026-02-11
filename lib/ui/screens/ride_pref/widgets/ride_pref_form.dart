@@ -8,6 +8,7 @@ import '../../../../ui/theme/theme.dart';
 import '../../../../ui/widgets/actions/bla_button.dart';
 import '../../../../ui/widgets/display/bla_divider.dart';
 import '../../location_picker.dart/location_picker_screen.dart';
+import '../../seat_number.dart/seat_number_screen.dart';
  
 ///
 /// A Ride Preference From is a view to select:
@@ -98,8 +99,16 @@ class _RidePrefFormState extends State<RidePrefForm> {
 
   }
 
-  void onTapRequestedSeats() {
-
+  void onTapRequestedSeats() async{
+    int? selectedSeat = await Navigator.push<int>(
+      context,
+      MaterialPageRoute(builder: (context) => SeatNumberScreen(preSeat: requestedSeats)),
+    );
+    if(selectedSeat != null){
+      setState(() {
+        requestedSeats = selectedSeat;
+      });
+    }
   }
 
   void onSearch() {
