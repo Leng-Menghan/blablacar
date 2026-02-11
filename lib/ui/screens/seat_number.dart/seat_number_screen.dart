@@ -1,3 +1,4 @@
+import '../../widgets/actions/back_bla_button.dart';
 import 'package:flutter/material.dart';
 
 import '../../theme/theme.dart';
@@ -31,10 +32,6 @@ class _SeatNumberScreenState extends State<SeatNumberScreen> {
     });
   }
 
-  void onBack(){
-    Navigator.pop(context);
-  }
-
   void onNext(){
     Navigator.pop<int>(context, seat);
   }
@@ -50,10 +47,7 @@ class _SeatNumberScreenState extends State<SeatNumberScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              onTap: onBack, 
-              child: Icon(Icons.clear, color: BlaColors.primary)
-            ),
+            BackBlaButton(),
             const SizedBox(height: BlaSpacings.s,),
             Text(
               "Number of seats to book",
