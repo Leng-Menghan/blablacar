@@ -42,10 +42,15 @@ class _RidePrefFormState extends State<RidePrefForm> {
   void initState() {
     super.initState();
     // TODO 
-    departure = Location(name: "London", country: Country.uk);
-    arrival = Location(name: "Paris", country: Country.france);
-    departureDate = DateTime.now();
-    requestedSeats = 1;
+    if(widget.initRidePref != null){
+      departure =widget.initRidePref!.departure;
+      arrival = widget.initRidePref!.arrival;
+      departureDate = widget.initRidePref!.departureDate;
+      requestedSeats = widget.initRidePref!.requestedSeats;
+    }else{
+      departureDate = DateTime.now();
+      requestedSeats = 1;
+    }
   }
 
   // ----------------------------------
